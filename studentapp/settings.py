@@ -27,10 +27,10 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ninte gmail'
-EMAIL_HOST_PASSWORD = 'ninte gmail password'
-DEFAULT_FROM_EMAIL = 'ninte gmail'
-SERVER_EMAIL = 'ninte gmail'
+EMAIL_HOST_USER = 'djangoraven@gmail.com'
+EMAIL_HOST_PASSWORD = 'qwerty@1234'
+DEFAULT_FROM_EMAIL = 'djangoraven@gmail.com'
+SERVER_EMAIL = 'djangoraven@gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
