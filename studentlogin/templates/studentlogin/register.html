@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'studentlogin/style.css' %}" />
+</head>
+
+<body>
+  <body>
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Register</h1>
+			</div>
+      <form action="{% url 'studentlogin:register' %}" method="post">
+      {% csrf_token %}
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Username" id="reg-name" name="username" required>
+				<label class="login-field-icon fui-user" for="reg-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="Password" id="reg-pass" name="password" required>
+				<label class="login-field-icon fui-lock" for="reg-pass"></label>
+				</div>
+
+        <div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Email" id="reg-email" name="email" required>
+				<label class="login-field-icon fui-user" for="reg-email"></label>
+				</div>
+
+        <div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Phone Number" id="reg-phone" name="phone" required>
+				<label class="login-field-icon fui-user" for="reg-phone"></label>
+				</div>
+
+				<input type="submit" class="btn btn-primary btn-large btn-block" value="Register"/>
+        {% if error_message %}<p>{{ error_message }}</p>{% endif %}
+        {% if success_message %}<p>{{ success_message }}</p>{% endif %}
+			</div>
+    </form>
+		</div>
+	</div>
+</body>
+
+
+</body>
+</html>
