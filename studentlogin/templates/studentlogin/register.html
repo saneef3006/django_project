@@ -14,7 +14,7 @@
 			<div class="app-title">
 				<h1>Register</h1>
 			</div>
-      <form action="{% url 'studentlogin:register' %}" method="post">
+      <form action="{% url 'studentlogin:register' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
 			<div class="login-form">
 				<div class="control-group">
@@ -35,6 +35,11 @@
         <div class="control-group">
 				<input type="text" class="login-field" value="" placeholder="Phone Number" id="reg-phone" name="phone" required>
 				<label class="login-field-icon fui-user" for="reg-phone"></label>
+				</div>
+
+        <div class="control-group">
+				<input type="file" class="login-field" value=""  accept="image/*" id="reg-image" name="image" required>
+				<label class="login-field-icon fui-user" for="reg-image"></label>
 				</div>
 
 				<input type="submit" class="btn btn-primary btn-large btn-block" value="Register"/>

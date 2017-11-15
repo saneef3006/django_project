@@ -1,28 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
+
 <html >
 <head>
   <meta charset="UTF-8">
   <title>Login Form</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'studentlogin/dashboard_style.css' %}" />
+
 </head>
 
 <body>
-	<div class="login">
-		<div class="login-screen">
-			<div class="app-title">
-				<h1>Welcome</h1>
-			</div>
-   </div>
-   <div class="user-detail">
-     <div class="detail-labels">
-       <h1>Welco</h1>
-     </div>
-  </div>
-	</div>
-
-
-
-
+	<p>{{user.user_name}}</p>
+  <p>{{user.email}}</p>
+  <p>{{user.phone}}</p>
+  <img src="{{user.image.url}}" alt="Smiley face" >
 </body>
 </html>

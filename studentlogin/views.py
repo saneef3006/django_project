@@ -17,7 +17,9 @@ def index(request):
                 context = {'error_message': 'Incorrect username or password'}
                 return render(request, 'studentlogin/index.html', context)
             else:
-                return render(request, 'studentlogin/dashboard.html')
+                user = User.objects.get(user_name=username)
+                context = {'user': user}
+                return render(request, 'studentlogin/dashboard.html',context)
         else:
             context = {'error_message': 'Incorrect username or password'}
             return render(request, 'studentlogin/index.html', context)
@@ -30,6 +32,7 @@ def register(request):
         password = request.POST.get('password')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
+        image = request.FILES.get('image')
         context = {}
         if not validateEmail(email):
             context['error_message'] = 'Invalid email address'
@@ -41,7 +44,7 @@ def register(request):
             context['error_message'] = 'Username already taken.'
             return render(request, 'studentlogin/register.html', context)
         else:
-            addUser(username, password, phone, email)
+            addUser(username, password, phone, email, image)
             sendMail(email)
             context['success_message'] = 'User created successfully.'
             return render(request, 'studentlogin/register.html', context)
@@ -77,8 +80,8 @@ def checkForPasswordMismatch(username, password):
     else:
         return True
 
-def addUser(username, password, phoneNumber, email):
-    user = User(user_name=username, password=password, phone=phoneNumber, email=email)
+def addUser(username, password, phoneNumber, email, image):
+    user = User(user_name=username, password=password, phone=phoneNumber, email=email, image=image)
     user.save()
 
 def sendMail(email):
