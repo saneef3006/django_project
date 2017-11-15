@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import EmailMessage
 import re
 
-from studentlogin.models import User
+from models import User
 # Create your views here.
 
 def index(request):
