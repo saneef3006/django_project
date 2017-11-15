@@ -5,6 +5,17 @@
   <meta charset="UTF-8">
   <title>Login Form</title>
   <link rel="stylesheet" type="text/css" href="{% static 'studentlogin/style.css' %}" />
+  <script type='text/javascript'>
+
+    function openFile() {
+      document.getElementById('reg-image').click();
+    }
+
+    function updateFileField(filename) {
+      filename = filename.replace("C:\\fakepath\\", "");
+      document.getElementById('reg-image_uploader').value=filename;
+    }
+  </script>
 </head>
 
 <body>
@@ -38,7 +49,8 @@
 				</div>
 
         <div class="control-group">
-				<input type="file" class="login-field" value=""  accept="image/*" id="reg-image" name="image" required>
+        <input type="text" class="login-field" value="" placeholder="Profile image" id="reg-image_uploader" onclick=openFile() required>
+				<input type="file" class="login-field" value="" hidden accept="image/*" id="reg-image" name="image" onchange=updateFileField(this.value) required>
 				<label class="login-field-icon fui-user" for="reg-image"></label>
 				</div>
 

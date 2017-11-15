@@ -1,15 +1,23 @@
-
+{% load static %}
 <html >
 <head>
   <meta charset="UTF-8">
   <title>Login Form</title>
-
+  <link rel="stylesheet" type="text/css" href="{% static 'studentlogin/dashboard_style.css' %}" />
 </head>
 
 <body>
-	<p>{{user.user_name}}</p>
-  <p>{{user.email}}</p>
-  <p>{{user.phone}}</p>
-  <img src="{{user.image.url}}" alt="Smiley face" >
+
+  <div class="heading">
+      <p class="detail-title">Welcome {{user.user_name}}</p>
+      <input type="button" class="btn" value="Log out" id= "logout"/>
+  </div>
+  <div class="content">
+    <p class="content-labels">Email : {{user.email}}</p>
+    <p class="content-labels">Phone Number : {{user.phone}}</p>
+  </div>
+  <div class="profile-image">
+    <img src="{{user.image.url}}" class="image" alt="Smiley face" >
+  </div>
 </body>
 </html>
