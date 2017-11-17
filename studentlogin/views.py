@@ -16,7 +16,7 @@ def index(request):
             return render(request, 'studentlogin/dashboard.html',context)
         else:
             if request.session.has_key('username'):
-                del request.session['username']    
+                del request.session['username']
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -73,6 +73,24 @@ def validateEmail(email):
         return True
     except ValidationError:
         return False
+
+def dashboard(request):
+    if request.method == 'POST' and request.session.has_key('username'):
+        username = request.session['username']
+        if checkIfUserExists(username):
+            user = User.objects.get(user_name=username)
+            user.assignment = request.FILES.get('assignment')
+            user.save()
+            context = {'user': user}
+            context['success'] = 'Uploaded successfully'
+            return render(request, 'studentlogin/dashboard.html',context)
+        else:
+            if request.session.has_key('username'):
+                del request.session['username']
+                return render(request, 'studentlogin/logout.html')
+    else:
+        return render(request, 'studentlogin/logout.html')
+
 
 def validatePhoneNumber(phone):
     validPhone = re.match(r'^[789]\d{9}$', phone)

@@ -2,8 +2,19 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Login Form</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" type="text/css" href="{% static 'studentlogin/dashboard_style.css' %}" />
+  <script type='text/javascript'>
+
+    function openFile() {
+      document.getElementById('reg-file').click();
+    }
+
+    function updateFileField(filename) {
+      filename = filename.replace("C:\\fakepath\\", "");
+      document.getElementById('reg-file_uploader').value=filename;
+    }
+  </script>
 </head>
 
 <body>
@@ -15,6 +26,16 @@
   <div class="content">
     <p class="content-labels">Email : {{user.email}}</p>
     <p class="content-labels">Phone Number : {{user.phone}}</p>
+    <form action="{% url 'studentlogin:dashboard' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="control-group">
+    <input type="text" class="login-field" value="" placeholder="Select assignment file" id="reg-file_uploader" onclick=openFile() required>
+    <input type="file" class="login-field" value="" hidden accept="application/pdf,application/vnd.oasis.opendocument.text" id="reg-file" name="assignment" onchange=updateFileField(this.value) required>
+    <label class="login-field-icon fui-user" for="reg-image"></label>
+    <input type="submit" class="btn btn-primary btn-large btn-block" value="Upload"/>
+    </div>
+  </form>
+  {% if success %}<p>{{ success }}</p>{% endif %}
   </div>
   <div class="profile-image">
     <img src="{{user.image.url}}" class="image" alt="Smiley face" >
