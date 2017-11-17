@@ -10,7 +10,7 @@
 
   <div class="heading">
       <p class="detail-title">Welcome {{user.user_name}}</p>
-      <input type="button" class="btn" value="Log out" id= "logout"/>
+      <input type="button" class="btn" value="Log out" onclick="location.href='{% url 'studentlogin:logout' %}'"id= "logout"/>
   </div>
   <div class="content">
     <p class="content-labels">Email : {{user.email}}</p>

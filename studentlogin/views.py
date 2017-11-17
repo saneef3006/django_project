@@ -8,6 +8,15 @@ from studentlogin.models import User
 # Create your views here.
 
 def index(request):
+    if request.session.has_key('username'):
+        username = request.session['username']
+        if checkIfUserExists(username):
+            user = User.objects.get(user_name=username)
+            context = {'user': user}
+            return render(request, 'studentlogin/dashboard.html',context)
+        else:
+            if request.session.has_key('username'):
+                del request.session['username']    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -19,6 +28,7 @@ def index(request):
             else:
                 user = User.objects.get(user_name=username)
                 context = {'user': user}
+                request.session['username'] = user.user_name
                 return render(request, 'studentlogin/dashboard.html',context)
         else:
             context = {'error_message': 'Incorrect username or password'}
@@ -51,6 +61,11 @@ def register(request):
 
     else:
         return render(request, 'studentlogin/register.html')
+
+def logout(request):
+    if request.session.has_key('username'):
+        del request.session['username']
+    return render(request, 'studentlogin/logout.html')
 
 def validateEmail(email):
     try:

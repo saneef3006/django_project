@@ -68,6 +68,12 @@
 	float: right;
 }
 
+.message{
+	font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+}
+
 body {
 	background-color: #3498DB;
 	padding: 50px;
